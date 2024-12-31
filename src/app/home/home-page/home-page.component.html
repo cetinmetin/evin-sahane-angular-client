@@ -1,25 +1,31 @@
 @if (header$ | async; as header) {
-	<div>
-		<header
-			id="banner"
-			class="scrollto clearfix shift-left"
-			data-enllax-ratio=".5"
-			[style.background]="
-				'url(../assets/images/banner-images/' +
-				header.image +
-				' ) no-repeat center top;'
-			">
-			<div id="banner-content" class="row clearfix pull-right">
-				<div class="col-38">
-					<div class="section-heading">
-						<h1>{{ header.tagline }}</h1>
-						<h2>{{ header.title }}</h2>
+	<div #container appScroll [items]="itemRefs" class="home-page">
+		<div class="image" *ngFor="let image of header.images">
+			<header
+				#itemRef
+				id="banner"
+				class="parallax"
+				[style.background]="
+					'url(../assets/images/banner-images/' + image + ' )'
+				">
+				<div id="banner-content" class="row clearfix fa-align-left content">
+					<div class="col-38">
+						<div class="section-heading">
+							<h1>{{ header.tagline }}</h1>
+							<h2>{{ header.title }}</h2>
+						</div>
+						<a routerLink="{{ header.buttonlink }}" class="button">{{
+							header.buttontext
+						}}</a>
 					</div>
-					<a routerLink="{{ header.buttonlink }}" class="button">{{
-						header.buttontext
-					}}</a>
 				</div>
+			</header>
+			<div
+				#itemRef
+				style="height: 500px; background-color: whitesmoke; font-size: 36px">
+				This div is just here to enable scrolling. Tip: Try to remove the
+				background-attachment property to remove the scrolling effect.
 			</div>
-		</header>
+		</div>
 	</div>
 }

@@ -55,12 +55,15 @@ export class InMemoryDataService implements InMemoryDbService {
 			{
 				id: 7,
 				name: 'header',
-				tagline: 'A FREE AND SIMPLE LANDING PAGE',
-				title:
-					'Namari is free landing page template you can use for your projects. It is free to use for your personal and commercial projects, enjoy!',
-				buttontext: 'START CREATING TODAY',
+				tagline: 'EVİM ŞAHANE',
+				title: 'Ömer ustamız gelmiş',
+				buttontext: 'Evinizi döşeyelim',
 				buttonlink: '/home',
-				image: 'banner-image-1.jpg',
+				images: [
+					'banner-image-1.jpg',
+					'banner-image-2.jpg',
+					'banner-image-3.jpg',
+				],
 			},
 		];
 		const features = [

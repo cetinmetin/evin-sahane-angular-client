@@ -54,13 +54,11 @@ const routes: Routes = [
 			),
 	},
 	{
-		path: '404',
-		loadChildren: () =>
-			import('./notfound/notfound-page/notfound-page.component').then(
-				mod => mod.NotfoundPageComponent
-			),
-	},
-	{ path: '**', redirectTo: '/404' },
+    path: '**', loadComponent: () =>
+      import('./notfound/notfound-page/notfound-page.component').then(
+        mod => mod.NotfoundPageComponent
+      ),
+  },
 ];
 
 @NgModule({

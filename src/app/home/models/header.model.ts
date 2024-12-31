@@ -4,7 +4,7 @@ export class Header {
 	tagline: string;
 	title: string;
 	description: string;
-	image: string;
+	images: string[];
 	buttontext: string;
 	buttonlink: string;
 }
