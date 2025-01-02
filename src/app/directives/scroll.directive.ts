@@ -5,6 +5,7 @@ import {
 	QueryList,
 	AfterViewChecked,
 	Renderer2,
+	HostListener,
 } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -19,7 +20,11 @@ export class ScrollDirective implements AfterViewChecked {
 	currentItemIndex = 0;
 	sections: HTMLElement[] = [];
 	indicators: HTMLElement[] = [];
-
+	topButtonContainer: HTMLElement = null;
+	@HostListener('window:scroll', [])
+	onWindowScroll() {
+		this.setVisibilityToTopButton(window.scrollY > 0);
+	}
 	constructor(
 		private container: ElementRef,
 		private renderer: Renderer2
@@ -33,9 +38,10 @@ export class ScrollDirective implements AfterViewChecked {
 			this.initialized = true;
 			this.createIndicators();
 			this.highlightIndicator(0);
+			this.createToTopButton();
 		}
 	}
-
+	// Sayfada overflow kapalı olduğu için wheel event ile çalısıyoruz
 	setupScrollEvent() {
 		// Debounced scroll listener
 		const scroll: Observable<WheelEvent> = fromEvent(
@@ -96,6 +102,41 @@ export class ScrollDirective implements AfterViewChecked {
 			const color = i === index ? '#007BFF' : '#bbb';
 			this.renderer.setStyle(indicator, 'background-color', color);
 		});
+	}
+
+	createToTopButton() {
+		this.topButtonContainer = this.renderer.createElement('div');
+		this.renderer.setStyle(this.topButtonContainer, 'position', 'fixed');
+		this.renderer.setStyle(this.topButtonContainer, 'right', '20px');
+		this.renderer.setStyle(this.topButtonContainer, 'top', '90%');
+		this.renderer.setStyle(
+			this.topButtonContainer,
+			'transform',
+			'translateY(-90%)'
+		);
+		this.renderer.setStyle(this.topButtonContainer, 'display', 'flex');
+		this.renderer.setStyle(this.topButtonContainer, 'flex-direction', 'column');
+		this.renderer.setStyle(this.topButtonContainer, 'gap', '10px');
+		this.renderer.setStyle(this.topButtonContainer, 'display', 'none');
+
+		const toTopButton = this.renderer.createElement('div');
+		this.renderer.setStyle(toTopButton, 'width', '30px');
+		this.renderer.setStyle(toTopButton, 'height', '30px');
+		this.renderer.setStyle(toTopButton, 'border-radius', '50%');
+		this.renderer.setStyle(toTopButton, 'background-color', '#bbb');
+		this.renderer.setStyle(toTopButton, 'cursor', 'pointer');
+		this.renderer.listen(toTopButton, 'click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+			this.scrollToSection(0);
+		});
+
+		this.renderer.appendChild(this.topButtonContainer, toTopButton);
+		this.renderer.appendChild(document.body, this.topButtonContainer);
+	}
+
+	setVisibilityToTopButton(isVisible: boolean) {
+		this.topButtonContainer.style.display = isVisible ? 'block' : 'none';
+		this.topButtonContainer.style.opacity = isVisible ? '1' : '0';
 	}
 
 	scrollToSection(index: number) {
