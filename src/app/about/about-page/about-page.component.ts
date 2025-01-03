@@ -5,12 +5,13 @@ import { Intro } from '../models/intro.model';
 import { Feature } from '../models/feature.model';
 import { AsyncPipe } from '@angular/common';
 import { FeatureBlockComponent } from '../feature-block/feature-block.component';
+import { ScrollDirective } from '../../directives/scroll.directive';
 
 @Component({
 	selector: 'app-about-page',
 	templateUrl: './about-page.component.html',
 	standalone: true,
-	imports: [FeatureBlockComponent, AsyncPipe],
+	imports: [FeatureBlockComponent, AsyncPipe, ScrollDirective],
 })
 export class AboutPageComponent implements OnInit {
 	intro$: Observable<Intro>;

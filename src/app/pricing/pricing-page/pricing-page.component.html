@@ -1,4 +1,4 @@
-<section id="pricing" class="secondary-color text-center scrollto clearfix">
+<section appScroll [isSectorScrollEnabled]='false' id="pricing" class="secondary-color text-center scrollto clearfix">
   <div class="row clearfix">
     @if (pricing$ | async; as pricing) {
       <div class="section-heading">

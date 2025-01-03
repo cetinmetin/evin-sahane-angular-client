@@ -1,5 +1,5 @@
 @if (header$ | async; as header) {
-	<div #container appScroll [items]="itemRefs" class="home-page">
+	<div #container appScroll [items]="itemRefs" [isSectorScrollEnabled]='true' class="home-page">
 		<div class="image" *ngFor="let image of header.images">
 			<header
 				#itemRef
@@ -8,7 +8,7 @@
 				[style.background]="
 					'url(../assets/images/banner-images/' + image + ' )'
 				">
-				<div id="banner-content" class="row clearfix fa-align-left">
+				<div id="banner-content" class="row clearfix">
 					<div class="col-38">
 						<div class="section-heading">
 							<h1>{{ header.tagline }}</h1>

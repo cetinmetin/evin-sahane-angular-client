@@ -64,7 +64,6 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden;
 }
 .parallax {
   height: 100vh;
@@ -2381,3 +2380,6 @@ h4 {
 #landing-footer i {
   color: #999;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

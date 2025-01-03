@@ -5,12 +5,13 @@ import { Pricing } from '../models/pricing.model';
 import { Plan } from '../models/plan.model';
 import { AsyncPipe } from '@angular/common';
 import { PricingBlockComponent } from '../pricing-block/pricing-block.component';
+import { ScrollDirective } from '../../directives/scroll.directive';
 
 @Component({
 	selector: 'app-pricing-page',
 	templateUrl: './pricing-page.component.html',
 	standalone: true,
-	imports: [PricingBlockComponent, AsyncPipe],
+	imports: [PricingBlockComponent, AsyncPipe, ScrollDirective],
 })
 export class PricingPageComponent implements OnInit {
 	pricing$: Observable<Pricing> = new Observable();
