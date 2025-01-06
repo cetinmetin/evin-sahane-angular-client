@@ -1,0 +1,12 @@
+#banner-content * {
+  color: lightgray !important;
+  border-width: initial;
+  border-radius: 16px;
+}
+
+#banner-content {
+  background: rgba(29, 27, 27, 0.7);
+  display: flex;
+  align-items: center;
+  top: 20%;
+}

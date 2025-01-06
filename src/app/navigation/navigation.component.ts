@@ -1,9 +1,10 @@
 import {
-  Component,
-  OnInit,
-  HostListener,
-  ViewChild,
-  ElementRef, Renderer2,
+	Component,
+	OnInit,
+	HostListener,
+	ViewChild,
+	ElementRef,
+	Renderer2,
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { ConfigService } from '../shared/services/config.service';
@@ -20,18 +21,18 @@ export class NavigationComponent implements OnInit {
 	menu: { id: number; title: string; link: string }[];
 	menuOpen: boolean;
 	database = 'menu';
-  private _scrollPosition: number;
+	private _scrollPosition: number;
 	@ViewChild('myHeader', { static: true }) myHeaderElement: ElementRef;
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this._scrollPosition = window.scrollY;
-    this.calculateStyles(this._scrollPosition);
-  }
+	@HostListener('window:scroll', [])
+	onWindowScroll() {
+		this._scrollPosition = window.scrollY;
+		this.calculateStyles(this._scrollPosition);
+	}
 
 	constructor(
 		private location: Location,
 		private config: ConfigService,
-    private renderer: Renderer2
+		private renderer: Renderer2
 	) {}
 
 	ngOnInit() {
@@ -51,6 +52,8 @@ export class NavigationComponent implements OnInit {
 	}
 
 	calculateStyles(scrollPosition: number): any {
-    scrollPosition > 0 ? this.renderer.removeClass(this.myHeaderElement.nativeElement, 'nav-top') : this.renderer.addClass(this.myHeaderElement.nativeElement, 'nav-top');
+		scrollPosition > 0
+			? this.renderer.removeClass(this.myHeaderElement.nativeElement, 'nav-top')
+			: this.renderer.addClass(this.myHeaderElement.nativeElement, 'nav-top');
 	}
 }

@@ -3,15 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { Intro } from '../models/intro.model';
 import { Feature } from '../models/feature.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { FeatureBlockComponent } from '../feature-block/feature-block.component';
 import { ScrollDirective } from '../../directives/scroll.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-about-page',
 	templateUrl: './about-page.component.html',
 	standalone: true,
-	imports: [FeatureBlockComponent, AsyncPipe, ScrollDirective],
+  styleUrls:['./about-page.css'],
+  imports: [FeatureBlockComponent, AsyncPipe, ScrollDirective, NgForOf, RouterLink],
 })
 export class AboutPageComponent implements OnInit {
 	intro$: Observable<Intro>;

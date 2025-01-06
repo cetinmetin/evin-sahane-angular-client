@@ -4,4 +4,5 @@ export class Intro {
 	tagline: string;
 	title: string;
 	description: string;
+  images: string[];
 }

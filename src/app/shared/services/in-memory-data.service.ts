@@ -14,6 +14,10 @@ export class InMemoryDataService implements InMemoryDbService {
 				title: 'How We Help You To Sell Your Product',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!',
+      images: [
+      'first.jpg',
+      'principles.jpg',
+    ],
 			},
 			{
 				id: 2,
@@ -55,7 +59,7 @@ export class InMemoryDataService implements InMemoryDbService {
 			{
 				id: 7,
 				name: 'header',
-				tagline: 'EVİM ŞAHANE',
+				tagline: 'EVİN ŞAHANE',
 				title: 'Ömer ustamız gelmiş',
 				buttontext: 'Evinizi döşeyelim',
 				buttonlink: '/home',
