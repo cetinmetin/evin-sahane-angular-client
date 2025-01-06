@@ -1,0 +1,84 @@
+@if (homeContent$ | async; as homeContent) {
+	<div
+		#homeContainer
+		appScroll
+		[items]="itemRefs"
+		[isSectorScrollEnabled]="true"
+		class="home-container">
+		<div #itemRef class="section scrollto">
+			<div
+				class="banner parallax"
+				[style.background]="
+					'url(../assets/images/banner-images/' + homeContent.images[0] + ' )'
+				">
+				<div class="banner-content row clearfix">
+					<div class="col-38">
+						<div class="section-heading">
+							<h1>{{ homeContent.tagline }}</h1>
+							<h2>{{ homeContent.title }}</h2>
+						</div>
+						<a routerLink="{{ homeContent.buttonlink }}" class="button">{{
+							homeContent.buttontext
+						}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div style="height: 500px; background-color: #2e2c2d; font-size: 36px">
+				This div is just here to enable scrolling. Tip: Try to remove the
+				background-attachment property to remove the scrolling effect.
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div
+				class="parallax banner"
+				[style.background]="
+					'url(../assets/images/banner-images/' + homeContent.images[1] + ' )'
+				">
+				<div class="banner-content row clearfix">
+					<div class="col-38">
+						<div class="section-heading">
+							<h1>{{ homeContent.tagline }}</h1>
+							<h2>{{ homeContent.title }}</h2>
+						</div>
+						<a routerLink="{{ homeContent.buttonlink }}" class="button">{{
+							homeContent.buttontext
+						}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div style="height: 500px; background-color: #2e2c2d; font-size: 36px">
+				This div is just here to enable scrolling. Tip: Try to remove the
+				background-attachment property to remove the scrolling effect.
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div
+				class="parallax banner"
+				[style.background]="
+					'url(../assets/images/banner-images/' + homeContent.images[2] + ' )'
+				">
+				<div class="banner-content row clearfix">
+					<div class="col-38">
+						<div class="section-heading">
+							<h1>{{ homeContent.tagline }}</h1>
+							<h2>{{ homeContent.title }}</h2>
+						</div>
+						<a routerLink="{{ homeContent.buttonlink }}" class="button">{{
+							homeContent.buttontext
+						}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div style="height: 500px; background-color: #2e2c2d; font-size: 36px">
+				This div is just here to enable scrolling. Tip: Try to remove the
+				background-attachment property to remove the scrolling effect.
+			</div>
+		</div>
+	</div>
+}

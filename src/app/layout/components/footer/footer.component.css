@@ -1,0 +1,10 @@
+.footer-social app-social {
+  float: right;
+  right: 10px;
+  margin-right: 0;
+  margin-left: 15px;
+}
+
+#landing-footer {
+  height: 200px;
+}
