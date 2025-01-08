@@ -1,33 +1,107 @@
-@if (intro$ | async; as intro) {
-	<section id="about" class="introduction scrollto">
-      <div class="image" *ngFor="let image of intro.images">
-        <header
-          id="banner"
-          class="parallax"
-          [style.background]="
-					'url(../assets/images/about-page-images/banner-images/' + image + ' )'
+@if (aboutContent$ | async; as aboutContent) {
+	<div
+		#aboutContainer
+		appScroll
+		[items]="itemRefs"
+		[isSectorScrollEnabled]="false"
+		class="about-container">
+		<div #itemRef class="section scrollto">
+			<div
+				class="banner parallax"
+				[style.background]="
+					'url(../assets/images/about-page-images/banner-images/' +
+					aboutContent.images[0] +
+					' )'
 				">
-          <div id="banner-content" class="row clearfix">
-            <div class="col-38">
-              <div class="section-heading">
-                <h1>{{ intro.tagline }}</h1>
-                <h2>{{ intro.title }}</h2>
-              </div>
-            </div>
-          </div>
-        </header>
-        <div
-          style="height: 500px; background-color: whitesmoke; font-size: 36px">
-          This div is just here to enable scrolling. Tip: Try to remove the
-          background-attachment property to remove the scrolling effect.
-        </div>
-      </div>
-		<div class="row clearfix">
+				<div class="banner-content row clearfix">
+					<div class="col-38">
+						<div class="section-heading">
+							<h1>{{ aboutContent.tagline }}</h1>
+							<h2>{{ aboutContent.title }}</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div style="height: 500px; font-size: 36px">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<img
+									ngSrc="assets/images/about-page-images/{{
+										aboutContent.images[1]
+									}}"
+									loading="eager"
+									width="550"
+									height="350" />
+							</div>
+							<div class="col-md-6">
+								<p>
+									This div is just here to enable scrolling. Tip: Try to remove
+									the background-attachment property to remove the scrolling
+									effect.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<div
+				style="
+					height: 500px;
+					background-color: #2e2c2d;
+					font-size: 36px;
+					color: white;
+				">
+				<p style="text-align: center">
+					This div is just here to enable scrolling. Tip: Try to remove the
+					background-attachment property to remove the scrolling effect.
+				</p>
+				<mat-grid-list cols="3" rowHeight="4:3">
+					<mat-grid-tile>
+						<div class="">bfdbfd</div>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<div class="">asdsad</div>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<div class="">asdsad</div>
+					</mat-grid-tile>
+				</mat-grid-list>
+			</div>
+		</div>
+		<div #itemRef class="section scrollto">
+			<mat-grid-list cols="1" rowHeight="2:1">
+				<mat-grid-tile>
+					<div
+						class="static-background"
+						[style.background]="
+							'url(../assets/images/about-page-images/' +
+							aboutContent.images[2] +
+							' )'
+						">
+						<div class="banner-content row clearfix">
+							<div class="col-38">
+								<div class="section-heading">
+									<h1>{{ aboutContent.tagline }}</h1>
+									<h2>{{ aboutContent.title }}</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</div>
+		<div #itemRef class="section scrollto">
 			<div class="col-3">
 				<div class="section-heading">
-					<h3>{{ intro.tagline }}</h3>
-					<h2 class="section-title">{{ intro.title }}</h2>
-					<p class="section-subtitle">{{ intro.description }}</p>
+					<h3>{{ aboutContent.tagline }}</h3>
+					<h2 class="section-title">{{ aboutContent.title }}</h2>
+					<p class="section-subtitle">{{ aboutContent.description }}</p>
 				</div>
 			</div>
 			@if (features$) {
@@ -40,5 +114,5 @@
 				</div>
 			}
 		</div>
-	</section>
+	</div>
 }

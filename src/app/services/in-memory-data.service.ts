@@ -17,6 +17,7 @@ export class InMemoryDataService implements InMemoryDbService {
       images: [
       'first.jpg',
       'principles.jpg',
+      '3.jpg'
     ],
 			},
 			{

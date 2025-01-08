@@ -1,23 +1,44 @@
 import { Observable, throwError, catchError } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	OnInit,
+	QueryList,
+	ViewChildren,
+} from '@angular/core';
 import { ConfigService } from 'src/app/services/config.service';
 import { Intro } from '../../../models/intro.model';
 import { Feature } from '../../../models/feature.model';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe, NgForOf, NgOptimizedImage } from '@angular/common';
 import { FeatureBlockComponent } from '../feature-block/feature-block.component';
 import { ScrollDirective } from '../../../directives/scroll.directive';
 import { RouterLink } from '@angular/router';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
 	selector: 'app-about-page',
 	templateUrl: './about-page.component.html',
 	standalone: true,
-  styleUrls:['./about-page.css'],
-  imports: [FeatureBlockComponent, AsyncPipe, ScrollDirective, NgForOf, RouterLink],
+	styleUrls: [
+		'./about-page.css',
+		'../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
+	],
+	imports: [
+		FeatureBlockComponent,
+		AsyncPipe,
+		ScrollDirective,
+		NgForOf,
+		RouterLink,
+		NgOptimizedImage,
+		MatGridList,
+		MatGridTile,
+	],
 })
 export class AboutPageComponent implements OnInit {
-	intro$: Observable<Intro>;
+	aboutContent$: Observable<Intro>;
 	features$: Observable<Feature[]>;
+	@ViewChildren('itemRef', { read: ElementRef })
+	itemRefs: QueryList<ElementRef>;
 
 	constructor(private config: ConfigService) {}
 
@@ -27,7 +48,7 @@ export class AboutPageComponent implements OnInit {
 	}
 
 	getPageData(database: string, id?: number): void {
-		this.intro$ = this.config.getSettings(database, id).pipe(
+		this.aboutContent$ = this.config.getSettings(database, id).pipe(
 			catchError(error => {
 				console.error('Error fetching intro data:', error);
 				return throwError(error);

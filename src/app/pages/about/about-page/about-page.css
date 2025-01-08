@@ -1,12 +1,23 @@
-#banner-content * {
+.banner-content * {
   color: lightgray !important;
   border-width: initial;
   border-radius: 16px;
 }
 
-#banner-content {
+.banner-content {
   background: rgba(29, 27, 27, 0.7);
-  display: flex;
   align-items: center;
   top: 20%;
+  left: 10%;
+}
+
+.img-container{
+  position: absolute;
+}
+
+.static-background{
+  height: 100%;
+  width: 100%;
+  background-size: cover !important;
+  display: block !important;
 }

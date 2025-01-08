@@ -76,7 +76,7 @@ body {
 }
 
 p {
-  line-height: 25px;
+  line-height: 40px;
 }
 
 .row img {
@@ -823,10 +823,6 @@ h4 {
 
 .icon-block .icon {
   position: absolute;
-}
-
-.icon-block p {
-  margin-top: 0;
 }
 
 /* Icon Left*/
@@ -2224,8 +2220,7 @@ a:hover,
 /* Banner Background and Text Colors */
 
 #banner {
-  background: url("assets/images/banner-images/banner-image-1.jpg") no-repeat
-    center top;
+  background: no-repeat center top;
   background-size: cover;
 }
 
