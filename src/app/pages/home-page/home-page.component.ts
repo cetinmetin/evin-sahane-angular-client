@@ -21,15 +21,6 @@ export class HomePageComponent implements OnInit {
 	constructor(private config: ConfigService) {}
 
 	ngOnInit() {
-		this.getPageData('pages', 7);
-	}
-
-	getPageData(database: string, id?: number): void {
-		this.homeContent$ = this.config.getSettings(database, id).pipe(
-			catchError(error => {
-				console.error('Error fetching feature data:', error);
-				return throwError(error);
-			})
-		);
+    this.homeContent$ = this.config.getPageData<Home>('pages', 7);
 	}
 }

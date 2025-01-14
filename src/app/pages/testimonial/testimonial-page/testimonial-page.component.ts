@@ -48,11 +48,11 @@ export class TestimonialPageComponent implements OnInit {
 	getData(database: string, id?: number) {
 		if (id) {
 			this.testimonials$ = this.config
-				.getSettings(database, id)
+				.getSettings<Testimonial[]>(database, id)
 				.pipe(catchError(this.handleError));
 		} else {
 			this.feedback$ = this.config
-				.getSettings(database)
+				.getSettings<Feedback[]>(database)
 				.pipe(catchError(this.handleError));
 		}
 	}

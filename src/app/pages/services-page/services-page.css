@@ -1,0 +1,28 @@
+.banner-content * {
+  color: lightgray !important;
+  border-width: initial;
+  border-radius: 16px;
+}
+
+.banner-content {
+  background: rgba(29, 27, 27, 0.7);
+
+}
+
+.img-container{
+  position: absolute;
+}
+
+.static-background{
+  height: 40vw;
+  width: 100%;
+  background-size: cover !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  text-align: center;
+  font-weight: bold;
+}

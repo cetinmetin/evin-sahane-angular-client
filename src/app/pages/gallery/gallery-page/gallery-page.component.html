@@ -1,11 +1,43 @@
-<section id="gallery" class="introduction scrollto text-center">
-	<div class="row clearfix">
-		<aside id="gallery" class="row text-center scrollto clearfix">
-			@for (image of images$ | async; track image; let i = $index) {
-				<div>
-					<app-image-block [image]="image"></app-image-block>
+@if (gallery$ | async; as gallery) {
+	<div
+		#galleryContainer
+		appScroll
+		[items]="itemRefs"
+		[isSectorScrollEnabled]="false"
+		class="gallery-container">
+		<div class="section scrollto">
+			@for (mainImage of gallery.mainImages; track mainImage) {
+				<div
+					#itemRef
+					class="banner static-background"
+					[style.background]="
+						'url(../assets/images/gallery-images/' + mainImage + ' )'
+					">
+					<div class="banner-content row clearfix">
+						<div class="col-38">
+							<div class="section-heading">
+								<h1>{{ gallery.tagline }}</h1>
+							</div>
+						</div>
+					</div>
 				</div>
 			}
-		</aside>
+			<div class="container">
+				<div class="row">
+					@for (imageFolder of gallery.imageFolders; track imageFolder) {
+						<aside
+							id="gallery"
+							class="text-center scrollto clearfix col-sm img-container">
+							<app-image-block
+								[image]="imageFolder.folderBannerImage"></app-image-block>
+							<div class="section-heading img-title">
+								<h6>{{ imageFolder.folderName }}</h6>
+								<h6>{{ imageFolder.description }}</h6>
+							</div>
+						</aside>
+					}
+				</div>
+			</div>
+		</div>
 	</div>
-</section>
+}

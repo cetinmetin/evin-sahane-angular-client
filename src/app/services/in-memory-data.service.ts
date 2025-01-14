@@ -14,11 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
 				title: 'How We Help You To Sell Your Product',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!',
-      images: [
-      'first.jpg',
-      'principles.jpg',
-      '3.jpg'
-    ],
+				images: ['first.jpg', 'principles.jpg', '3.jpg'],
 			},
 			{
 				id: 2,
@@ -31,10 +27,16 @@ export class InMemoryDataService implements InMemoryDbService {
 			{
 				id: 3,
 				name: 'services',
-				tagline: 'BELIEVING',
+				tagline: 'OUR WORK',
 				title: 'Focusing On What Matters Most',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!',
+					'At NOVO Construction, we are a commercial general contractor inspired by the never ending dedication of our teams. ' +
+					'The level of commitment we bring to each project and to the relationships we build is unequivocal. ' +
+					'We place our focus as a commercial general contractor, on our client’s needs and the quality of service we provide. ' +
+					'Our mission has always been inspired by our vision: to create a mid-size nimble commercial general construction company dedicated to providing enhanced customer value. ' +
+					'Today, with many loyal repeat clients and a reputation for excellence, we know exactly how to succeed. We deliver projects of superb quality and build rock solid relationships throughout the Bay Area & Texas.',
+				description2: 'VIEW OUR WORK BELOW',
+				images: ['banner.jpg'],
 			},
 			{
 				id: 4,
@@ -70,7 +72,50 @@ export class InMemoryDataService implements InMemoryDbService {
 					'banner-image-3.jpg',
 				],
 			},
+			{
+				id: 8,
+				name: 'gallery',
+				tagline: 'Corporate Interiors',
+				mainImages: ['main-1.jpg'],
+				imageFolders: [
+					{
+						id: 1,
+						folderName: 'Afetevleri Restorasyon',
+						description: 'Afetevleri',
+						folderBannerImage: { id: 1, name: 'Afetevleri Restorasyon/gallery-image-1.jpg' },
+						images: [
+							{ id: 1, name: 'gallery-image-1.jpg' },
+							{ id: 2, name: 'gallery-image-2.jpg' },
+						],
+					},
+					{
+						id: 2,
+						folderName: 'Banyo Restorasyon',
+						description: 'Banyo',
+						folderBannerImage: { id: 1, name: 'Banyo Restorasyon/gallery-image-3.jpg' },
+						images: [{ id: 3, name: 'gallery-image-3.jpg' }],
+					},
+					{
+						id: 3,
+						folderName: 'Evka-1 Restorasyon',
+						description: 'Evka-1',
+						folderBannerImage: { id: 1, name: 'Evka-1 Restorasyon/gallery-image-4.jpg' },
+						images: [
+							{ id: 4, name: 'gallery-image-4.jpg' },
+							{ id: 5, name: 'gallery-image-5.jpg' },
+						],
+					},
+					{
+						id: 4,
+						folderName: 'Mutfak Restorasyon',
+						description: 'Mutfak',
+						folderBannerImage: { id: 1, name: 'Mutfak Restorasyon/gallery-image-6.jpg' },
+						images: [{ id: 6, name: 'gallery-image-6.jpg' }],
+					},
+				],
+			},
 		];
+
 		const features = [
 			{
 				id: 1,
@@ -100,14 +145,6 @@ export class InMemoryDataService implements InMemoryDbService {
 				description:
 					'Id porro tritani recusabo usu, eum intellegam consequuntur et. Fugit debet ea sit, an pro nemore vivendum',
 			},
-		];
-		const images = [
-			{ id: 1, name: 'gallery-image-1.jpg' },
-			{ id: 2, name: 'gallery-image-2.jpg' },
-			{ id: 3, name: 'gallery-image-3.jpg' },
-			{ id: 4, name: 'gallery-image-4.jpg' },
-			{ id: 5, name: 'gallery-image-5.jpg' },
-			{ id: 6, name: 'gallery-image-6.jpg' },
 		];
 		const menu = [
 			{ id: 1, title: 'Home', link: '/home' },
@@ -297,7 +334,6 @@ export class InMemoryDataService implements InMemoryDbService {
 			menu,
 			pages,
 			features,
-			images,
 			companies,
 			feedback,
 			plans,

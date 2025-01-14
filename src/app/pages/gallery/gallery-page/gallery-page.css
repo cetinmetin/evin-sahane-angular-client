@@ -1,0 +1,49 @@
+.banner-content * {
+  color: lightgray !important;
+  border-width: initial;
+  border-radius: 16px;
+}
+
+.banner-content {
+  background: rgba(29, 27, 27, 0.7);
+}
+
+.img-container{
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.img-title {
+  position: absolute;
+  width: 250px;
+  height: 50px;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(29, 27, 27, 0.7);
+  color: lightgray !important;
+  border-width: initial;
+  border-radius: 16px;
+  text-align: center;
+  pointer-events: none;
+  padding: 3px 20px;
+}
+
+.static-background{
+  height: 40vw;
+  width: 100%;
+  background-size: cover !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-container{
+  background-color: rgb(42,42,42);
+}

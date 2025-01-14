@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { configuration } from './configuration';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
@@ -26,12 +26,23 @@ export class ConfigService {
 		return this.config;
 	}
 
-	getSettings(database: string, id?: number): Observable<any> {
+	getSettings<T>(database: string, id?: number): Observable<T> {
 		const url = id ? `api/${database}/${id}` : `api/${database}`;
 		return this.http
-			.get<any>(url)
+			.get<T>(url)
 			.pipe(
-				catchError(this.handleError(`Error getting data from ${database}`, []))
+				catchError(this.handleError<T>(`Error getting data from ${database}`))
 			);
+	}
+
+	getPageData<T>(database: string, id?: number): Observable<T> {
+		return this.getSettings<T>(database, id).pipe(
+			catchError(error => {
+				console.error('Error fetching feature data:', error);
+				return throwError(
+					() => new Error('Failed to fetch settings. Please try again later.')
+				);
+			})
+		);
 	}
 }

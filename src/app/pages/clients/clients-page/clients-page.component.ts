@@ -23,7 +23,7 @@ export class ClientsPageComponent implements OnInit {
 	}
 
 	getPageData(database: string, id?: number) {
-		this.clients$ = this.config.getSettings(database, id).pipe(
+		this.clients$ = this.config.getSettings<Client[]>(database, id).pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);
@@ -32,7 +32,7 @@ export class ClientsPageComponent implements OnInit {
 	}
 
 	getBlockData(database: string) {
-		this.companies$ = this.config.getSettings(database).pipe(
+		this.companies$ = this.config.getSettings<Company[]>(database).pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);

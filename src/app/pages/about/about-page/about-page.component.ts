@@ -43,25 +43,7 @@ export class AboutPageComponent implements OnInit {
 	constructor(private config: ConfigService) {}
 
 	ngOnInit(): void {
-		this.getPageData('pages', 1);
-		this.getBlockData('features');
-	}
-
-	getPageData(database: string, id?: number): void {
-		this.aboutContent$ = this.config.getSettings(database, id).pipe(
-			catchError(error => {
-				console.error('Error fetching intro data:', error);
-				return throwError(error);
-			})
-		);
-	}
-
-	getBlockData(database: string) {
-		this.features$ = this.config.getSettings(database).pipe(
-			catchError(error => {
-				console.error('Error fetching feature data:', error);
-				return throwError(error);
-			})
-		);
+		this.aboutContent$ = this.config.getPageData('pages', 1);
+    this.features$ = this.config.getPageData('features');
 	}
 }

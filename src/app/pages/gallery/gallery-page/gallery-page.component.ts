@@ -1,31 +1,36 @@
 import { Observable, throwError, catchError } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	OnInit,
+	QueryList,
+	ViewChildren,
+} from '@angular/core';
 import { ConfigService } from '../../../services/config.service';
 import { Image } from '../../../models/image.model';
 import { AsyncPipe } from '@angular/common';
 import { ImageBlockComponent } from '../image-block/image-block.component';
+import { ScrollDirective } from '../../../directives/scroll.directive';
+import { Gallery } from '../../../models/gallery.model';
 
 @Component({
 	selector: 'app-gallery-page',
 	templateUrl: './gallery-page.component.html',
 	standalone: true,
-	imports: [ImageBlockComponent, AsyncPipe],
+	styleUrls: [
+		'./gallery-page.css',
+		'../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
+	],
+	imports: [ImageBlockComponent, AsyncPipe, ScrollDirective],
 })
 export class GalleryPageComponent implements OnInit {
-	images$: Observable<Image[]> = new Observable();
+	gallery$: Observable<Gallery> = new Observable();
+	@ViewChildren('itemRef', { read: ElementRef })
+	itemRefs: QueryList<ElementRef>;
 
 	constructor(private config: ConfigService) {}
 
 	ngOnInit() {
-		this.getBlockData('images');
-	}
-
-	getBlockData(database: string) {
-		this.images$ = this.config.getSettings(database).pipe(
-			catchError(error => {
-				console.error('Error fetching feature data:', error);
-				return throwError(error);
-			})
-		);
+		this.gallery$ = this.config.getPageData<Gallery>('pages', 8);
 	}
 }

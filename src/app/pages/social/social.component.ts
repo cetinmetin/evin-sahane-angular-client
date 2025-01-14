@@ -20,7 +20,7 @@ export class SocialComponent implements OnInit {
 	}
 
 	getSocialsites(): void {
-		this.socialsites$ = this.config.getSettings('websites').pipe(
+		this.socialsites$ = this.config.getSettings<Site[]>('websites').pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);

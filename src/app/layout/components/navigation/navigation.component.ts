@@ -9,6 +9,7 @@ import {
 import { Location } from '@angular/common';
 import { ConfigService } from '../../../services/config.service';
 import { NavmenuComponent } from '../navmenu/navmenu.component';
+import { Menu } from '../../../models/menu.model';
 
 @Component({
 	selector: 'app-navigation',
@@ -18,7 +19,7 @@ import { NavmenuComponent } from '../navmenu/navmenu.component';
 	imports: [NavmenuComponent],
 })
 export class NavigationComponent implements OnInit {
-	menu: { id: number; title: string; link: string }[];
+	menu: Menu[];
 	menuOpen: boolean;
 	database = 'menu';
 	private _scrollPosition: number;
@@ -46,7 +47,7 @@ export class NavigationComponent implements OnInit {
 	}
 
 	getMenu() {
-		this.config.getSettings(this.database).subscribe(setting => {
+		this.config.getSettings<Menu[]>(this.database).subscribe(setting => {
 			this.menu = setting;
 		});
 	}

@@ -25,7 +25,7 @@ export class PricingPageComponent implements OnInit {
 	}
 
 	getPageData(database: string, id?: number) {
-		this.pricing$ = this.config.getSettings(database, id).pipe(
+		this.pricing$ = this.config.getSettings<Pricing>(database, id).pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);
@@ -34,7 +34,7 @@ export class PricingPageComponent implements OnInit {
 	}
 
 	getBlockData(database: string) {
-		this.plans$ = this.config.getSettings(database).pipe(
+		this.plans$ = this.config.getSettings<Plan[]>(database).pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);

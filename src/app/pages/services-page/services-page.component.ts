@@ -1,18 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Observable, throwError, catchError } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { Service } from '../../models/service.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { FeatureBlockComponent } from '../about/feature-block/feature-block.component';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { ScrollDirective } from '../../directives/scroll.directive';
 
 @Component({
 	selector: 'app-services-page',
 	templateUrl: './services-page.component.html',
 	standalone: true,
-	imports: [AsyncPipe],
+  styleUrls: [
+    './services-page.css',
+    '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
+  ],
+	imports: [
+		AsyncPipe,
+		FeatureBlockComponent,
+		MatGridList,
+		MatGridTile,
+		NgOptimizedImage,
+		ScrollDirective,
+	],
 })
 export class ServicesPageComponent implements OnInit {
-	services$: Observable<Service> = new Observable();
+	servicesContent$: Observable<Service> = new Observable();
+  @ViewChildren('itemRef', { read: ElementRef })
+  itemRefs: QueryList<ElementRef>;
 
 	constructor(private config: ConfigService) {}
 
@@ -21,7 +37,7 @@ export class ServicesPageComponent implements OnInit {
 	}
 
 	getPageData(database: string, id?: number) {
-		this.services$ = this.config.getSettings(database, id).pipe(
+		this.servicesContent$ = this.config.getSettings<Service>(database, id).pipe(
 			catchError(error => {
 				console.error('Error fetching feature data:', error);
 				return throwError(error);
