@@ -940,27 +940,27 @@ blockquote {
 
 /* --------- 6.4 Gallery ---------- */
 
-#gallery img {
+.gallery img {
   max-height: 300px;
 }
 
-#gallery [class*="col-"] {
+.gallery [class*="col-"] {
   padding: 0;
 }
 
-#gallery a {
+.gallery a {
   display: inline-block;
   position: relative;
   overflow: hidden;
 }
 
-#gallery a:hover img {
+.gallery a:hover img {
   opacity: 0.15;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-#gallery a:before {
+.gallery a:before {
   font-size: 2.2em;
   font-style: normal;
   font-weight: normal;
@@ -982,7 +982,7 @@ blockquote {
   /* vertical-align: middle; */
 }
 
-#gallery a:hover:before {
+.gallery a:hover:before {
   opacity: 1;
   top: 50%;
   left: 50%;

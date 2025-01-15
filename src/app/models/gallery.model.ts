@@ -1,7 +1,7 @@
 import { Image } from './image.model';
 import { ImageFolder } from './image-folder.model';
 
-export class Gallery {
+export class GalleryModel {
 	id: number;
 	name: string;
 	tagline: string;

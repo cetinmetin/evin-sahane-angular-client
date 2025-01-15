@@ -4,14 +4,26 @@ import {
 	ElementRef,
 	OnInit,
 	QueryList,
+	ViewChild,
 	ViewChildren,
 } from '@angular/core';
 import { ConfigService } from '../../../services/config.service';
 import { Image } from '../../../models/image.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { ImageBlockComponent } from '../image-block/image-block.component';
 import { ScrollDirective } from '../../../directives/scroll.directive';
-import { Gallery } from '../../../models/gallery.model';
+import { GalleryModel } from '../../../models/gallery.model';
+import {
+  Gallery,
+  GalleryComponent,
+  GalleryItem,
+  GalleryModule,
+  ImageItem, ImageSize, ThumbnailsPosition,
+} from 'ng-gallery';
+import {
+  GallerizeDirective,
+  LightboxDirective
+} from 'ng-gallery/lightbox';
 
 @Component({
 	selector: 'app-gallery-page',
@@ -21,16 +33,45 @@ import { Gallery } from '../../../models/gallery.model';
 		'./gallery-page.css',
 		'../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
 	],
-	imports: [ImageBlockComponent, AsyncPipe, ScrollDirective],
+	imports: [
+		ImageBlockComponent,
+		AsyncPipe,
+		ScrollDirective,
+		GalleryModule,
+		NgForOf,
+		GallerizeDirective,
+		LightboxDirective
+	],
 })
 export class GalleryPageComponent implements OnInit {
-	gallery$: Observable<Gallery> = new Observable();
+	gallery$: Observable<GalleryModel> = new Observable();
 	@ViewChildren('itemRef', { read: ElementRef })
 	itemRefs: QueryList<ElementRef>;
+	galleryImages: GalleryItem[];
+	@ViewChild(GalleryComponent) myGallery: GalleryComponent;
 
-	constructor(private config: ConfigService) {}
+	constructor(
+		private config: ConfigService,
+		private gallery: Gallery
+	) {}
 
 	ngOnInit() {
-		this.gallery$ = this.config.getPageData<Gallery>('pages', 8);
+		this.gallery$ = this.config.getPageData<GalleryModel>('pages', 8);
+	}
+	setGalleryData(images: Image[], folderName: string) {
+		this.galleryImages = images.map(
+			(image: Image) =>
+				new ImageItem({
+					src:
+						'../assets/images/gallery-images/' + folderName + '/' + image.name,
+					thumb:
+						'../assets/images/gallery-images/' + folderName + '/' + image.name,
+				})
+		);
+		this.gallery.ref().load(this.galleryImages);
+    this.gallery.ref().setConfig({
+      imageSize: ImageSize.Cover,
+      thumbPosition: ThumbnailsPosition.Bottom
+    });
 	}
 }

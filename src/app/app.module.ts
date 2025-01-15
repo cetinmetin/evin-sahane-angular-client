@@ -22,26 +22,26 @@ import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
 	declarations: [AppComponent],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+	imports: [
+		AppRoutingModule,
+		BrowserModule,
+		HttpClientModule,
+		ReactiveFormsModule,
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-      passThruUnknownUrl: true,
-    }),
-    FooterComponent,
-    NavigationComponent,
-    NavmenuComponent,
-    SocialComponent,
-    LayoutComponent,
-  ],
-	providers: [ConfigService, provideAnimationsAsync('noop')],
+		// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+		// and returns simulated server responses.
+		// Remove it when a real server is ready to receive requests.
+		HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+			dataEncapsulation: false,
+			passThruUnknownUrl: true,
+		}),
+		FooterComponent,
+		NavigationComponent,
+		NavmenuComponent,
+		SocialComponent,
+		LayoutComponent,
+	],
+	providers: [ ConfigService,provideAnimationsAsync('noop')],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
