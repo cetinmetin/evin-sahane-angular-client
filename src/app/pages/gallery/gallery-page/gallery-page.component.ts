@@ -1,9 +1,13 @@
 import { Observable, throwError, catchError } from 'rxjs';
 import {
+	AfterViewInit,
 	Component,
+	ContentChild,
 	ElementRef,
+	Input,
 	OnInit,
 	QueryList,
+	Renderer2,
 	ViewChild,
 	ViewChildren,
 } from '@angular/core';
@@ -14,16 +18,15 @@ import { ImageBlockComponent } from '../image-block/image-block.component';
 import { ScrollDirective } from '../../../directives/scroll.directive';
 import { GalleryModel } from '../../../models/gallery.model';
 import {
-  Gallery,
-  GalleryComponent,
-  GalleryItem,
-  GalleryModule,
-  ImageItem, ImageSize, ThumbnailsPosition,
+	Gallery,
+	GalleryComponent,
+	GalleryItem,
+	GalleryModule,
+	ImageItem,
+	ImageSize,
+	ThumbnailsPosition,
 } from 'ng-gallery';
-import {
-  GallerizeDirective,
-  LightboxDirective
-} from 'ng-gallery/lightbox';
+import { GallerizeDirective, LightboxDirective } from 'ng-gallery/lightbox';
 
 @Component({
 	selector: 'app-gallery-page',
@@ -40,19 +43,27 @@ import {
 		GalleryModule,
 		NgForOf,
 		GallerizeDirective,
-		LightboxDirective
+		LightboxDirective,
 	],
 })
 export class GalleryPageComponent implements OnInit {
 	gallery$: Observable<GalleryModel> = new Observable();
+	galleryImages: GalleryItem[];
 	@ViewChildren('itemRef', { read: ElementRef })
 	itemRefs: QueryList<ElementRef>;
-	galleryImages: GalleryItem[];
-	@ViewChild(GalleryComponent) myGallery: GalleryComponent;
-
+	@Input() isDemoViewer: boolean = false;
+	@ViewChildren('galleryDemoViewContainer', { read: ElementRef })
+	galleryDemoViewContainer: QueryList<ElementRef>;
+	@ViewChildren('galleryContainer', { read: ElementRef }) set content(
+		galleryContainer: QueryList<ElementRef>
+	) {
+		if (galleryContainer && this.galleryDemoViewContainer.first) {
+			this.switchDemoOrNormalComponent(galleryContainer);
+		}
+	}
 	constructor(
 		private config: ConfigService,
-		private gallery: Gallery
+		private gallery: Gallery,
 	) {}
 
 	ngOnInit() {
@@ -69,9 +80,18 @@ export class GalleryPageComponent implements OnInit {
 				})
 		);
 		this.gallery.ref().load(this.galleryImages);
-    this.gallery.ref().setConfig({
-      imageSize: ImageSize.Cover,
-      thumbPosition: ThumbnailsPosition.Bottom
-    });
+		this.gallery.ref().setConfig({
+			imageSize: ImageSize.Cover,
+			thumbPosition: ThumbnailsPosition.Bottom,
+		});
+	}
+	switchDemoOrNormalComponent(galleryContainer: QueryList<ElementRef>) {
+		if (this.isDemoViewer) {
+			this.galleryDemoViewContainer.first.nativeElement.style.display = 'block';
+			galleryContainer.first.nativeElement.style.display = 'none';
+		} else {
+			this.galleryDemoViewContainer.first.nativeElement.style.display = 'none';
+			galleryContainer.first.nativeElement.style.display = 'block';
+		}
 	}
 }

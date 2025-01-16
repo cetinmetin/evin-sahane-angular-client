@@ -7,6 +7,8 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { FeatureBlockComponent } from '../about/feature-block/feature-block.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { ScrollDirective } from '../../directives/scroll.directive';
+import { GalleryDemoViewComponent } from '../../components/gallery-demo-view/gallery-demo-view.component';
+import { GalleryPageComponent } from '../gallery/gallery-page/gallery-page.component';
 
 @Component({
 	selector: 'app-services-page',
@@ -16,14 +18,16 @@ import { ScrollDirective } from '../../directives/scroll.directive';
     './services-page.css',
     '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
   ],
-	imports: [
-		AsyncPipe,
-		FeatureBlockComponent,
-		MatGridList,
-		MatGridTile,
-		NgOptimizedImage,
-		ScrollDirective,
-	],
+  imports: [
+    AsyncPipe,
+    FeatureBlockComponent,
+    MatGridList,
+    MatGridTile,
+    NgOptimizedImage,
+    ScrollDirective,
+    GalleryDemoViewComponent,
+    GalleryPageComponent,
+  ],
 })
 export class ServicesPageComponent implements OnInit {
 	servicesContent$: Observable<Service> = new Observable();

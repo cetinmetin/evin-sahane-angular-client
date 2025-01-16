@@ -23,15 +23,15 @@
 			</div>
 		</div>
 		<div #itemRef class="section scrollto">
-			<div style="height: 500px; font-size: 36px">
 				<div class="container">
-					<div class="row">
-						<div class="col-md-12"></div>
-            <h5>{{ servicesContent.description }}</h5>
-            <h4>{{ servicesContent.description2 }}</h4>
-					</div>
+          <div class="row">
+            <div class="col-md-12">
+              <h5>{{ servicesContent.description }}</h5>
+              <h4>{{ servicesContent.description2 }}</h4>
+            </div>
 				</div>
 			</div>
+      <app-gallery-page [isDemoViewer]="true"></app-gallery-page>
 		</div>
 	</div>
 }
