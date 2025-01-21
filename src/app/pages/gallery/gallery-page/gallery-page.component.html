@@ -47,25 +47,4 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" #galleryDemoViewContainer>
-		<div class="row">
-			@for (
-				imageFolder of gallery.imageFolders;
-				track imageFolder;
-				let i = $index
-			) {
-				<aside
-					class="gallery text-center scrollto clearfix col-sm img-container">
-					<app-image-block
-						(click)="setGalleryData(imageFolder.images, imageFolder.folderName)"
-						[image]="imageFolder.folderBannerImage"
-						[lightbox]="0"></app-image-block>
-					<div class="section-heading img-title">
-						<h6>{{ imageFolder.folderName }}</h6>
-						<h6>{{ imageFolder.description }}</h6>
-					</div>
-				</aside>
-			}
-		</div>
-	</div>
 }

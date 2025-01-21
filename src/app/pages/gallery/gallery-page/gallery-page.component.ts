@@ -51,19 +51,9 @@ export class GalleryPageComponent implements OnInit {
 	galleryImages: GalleryItem[];
 	@ViewChildren('itemRef', { read: ElementRef })
 	itemRefs: QueryList<ElementRef>;
-	@Input() isDemoViewer: boolean = false;
-	@ViewChildren('galleryDemoViewContainer', { read: ElementRef })
-	galleryDemoViewContainer: QueryList<ElementRef>;
-	@ViewChildren('galleryContainer', { read: ElementRef }) set content(
-		galleryContainer: QueryList<ElementRef>
-	) {
-		if (galleryContainer && this.galleryDemoViewContainer.first) {
-			this.switchDemoOrNormalComponent(galleryContainer);
-		}
-	}
 	constructor(
 		private config: ConfigService,
-		private gallery: Gallery,
+		private gallery: Gallery
 	) {}
 
 	ngOnInit() {
@@ -84,14 +74,5 @@ export class GalleryPageComponent implements OnInit {
 			imageSize: ImageSize.Cover,
 			thumbPosition: ThumbnailsPosition.Bottom,
 		});
-	}
-	switchDemoOrNormalComponent(galleryContainer: QueryList<ElementRef>) {
-		if (this.isDemoViewer) {
-			this.galleryDemoViewContainer.first.nativeElement.style.display = 'block';
-			galleryContainer.first.nativeElement.style.display = 'none';
-		} else {
-			this.galleryDemoViewContainer.first.nativeElement.style.display = 'none';
-			galleryContainer.first.nativeElement.style.display = 'block';
-		}
 	}
 }

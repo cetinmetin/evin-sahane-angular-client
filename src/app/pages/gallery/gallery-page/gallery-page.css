@@ -13,12 +13,6 @@
   display: inline-block;
 }
 
-.image-container img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .img-title {
   position: absolute;
   width: 250px;

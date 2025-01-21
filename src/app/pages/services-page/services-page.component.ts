@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Observable, throwError, catchError } from 'rxjs';
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { Service } from '../../models/service.model';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { FeatureBlockComponent } from '../about/feature-block/feature-block.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { ScrollDirective } from '../../directives/scroll.directive';
-import { GalleryDemoViewComponent } from '../../components/gallery-demo-view/gallery-demo-view.component';
-import { GalleryPageComponent } from '../gallery/gallery-page/gallery-page.component';
+import { GalleryDemoViewerComponent } from '../../components/gallery-demo-viewer/gallery-demo-viewer.component';
 
 @Component({
 	selector: 'app-services-page',
@@ -25,9 +24,8 @@ import { GalleryPageComponent } from '../gallery/gallery-page/gallery-page.compo
     MatGridTile,
     NgOptimizedImage,
     ScrollDirective,
-    GalleryDemoViewComponent,
-    GalleryPageComponent,
-  ],
+    GalleryDemoViewerComponent,
+  ]
 })
 export class ServicesPageComponent implements OnInit {
 	servicesContent$: Observable<Service> = new Observable();

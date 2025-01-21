@@ -1,0 +1,19 @@
+@if (gallery$ | async; as gallery) {
+	@for (
+		imageFolder of gallery.imageFolders;
+		track imageFolder;
+		let i = $index
+	) {
+		<div [ngClass]="demoViewerContainerClass">
+			<aside class="gallery text-center scrollto clearfix img-container">
+				<app-image-block
+					routerLink="/gallery"
+					[image]="imageFolder.folderBannerImage"></app-image-block>
+				<div class="img-title">
+					<h6>{{ imageFolder.folderName }}</h6>
+					<h6>{{ imageFolder.description }}</h6>
+				</div>
+			</aside>
+		</div>
+	}
+}
