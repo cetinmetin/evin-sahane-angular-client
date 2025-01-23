@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLinkActive, RouterLink } from '@angular/router';
+import { Menu } from '../../../models/menu.model';
 
-interface MenuItem {}
 
 @Component({
 	selector: 'app-navmenu',
@@ -10,9 +10,9 @@ interface MenuItem {}
 	imports: [RouterLinkActive, RouterLink],
 })
 export class NavmenuComponent {
-	@Input() menu: MenuItem[];
+	@Input() menu: Menu[];
 	@Input() menuOpen: boolean;
-	@Output() menuStatus: EventEmitter<boolean>;
+	@Output() menuStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	toggleMenu(): void {
 		this.menuStatus.emit(!this.menuOpen);

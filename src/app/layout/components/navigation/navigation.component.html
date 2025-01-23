@@ -29,8 +29,7 @@
 			<div id="nav-trigger">
 				<span
 					[class.open]="menuOpen === true"
-					(onClick)="toggleMenu(!menuOpen)"
-					(onKeyUp)="toggleMenu(!menuOpen)"></span>
+					(click)="toggleMenu(!menuOpen)"></span>
 			</div>
 			<nav id="nav-mobile">
 				@if (menuOpen === true) {

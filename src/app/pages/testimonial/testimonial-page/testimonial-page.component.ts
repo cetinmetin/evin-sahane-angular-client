@@ -17,22 +17,25 @@
  * - getData(database: string, id?: number): Fetches the data from the ConfigService based on the provided database and optional id. It assigns the fetched data to the respective properties.
  */
 import { Observable, throwError, catchError } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ConfigService } from '../../../services/config.service';
 import { Feedback } from '../../../models/feedback.model';
 import { Testimonial } from '../../../models/testimonial.model';
 import { AsyncPipe } from '@angular/common';
 import { FeedbackBlockComponent } from '../feedback-block/feedback-block.component';
+import { ScrollDirective } from '../../../directives/scroll.directive';
 
 @Component({
 	selector: 'app-testimonial-page',
 	templateUrl: './testimonial-page.component.html',
 	standalone: true,
-	imports: [FeedbackBlockComponent, AsyncPipe],
+	imports: [FeedbackBlockComponent, AsyncPipe, ScrollDirective],
 })
 export class TestimonialPageComponent implements OnInit {
 	testimonials$: Observable<Testimonial[]>;
 	feedback$: Observable<Feedback[]>;
+  @ViewChildren('itemRef', { read: ElementRef })
+  itemRefs: QueryList<ElementRef>;
 
 	constructor(private config: ConfigService) {}
 
