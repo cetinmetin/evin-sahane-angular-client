@@ -223,10 +223,9 @@ section {
 
 .row {
   max-width: 1245px;
-  margin: 0 auto;
+  margin: 0 auto !important;
   padding: 75px 0;
   position: relative;
-  max-height: 300px;
 }
 
 .no-padding-bottom .row,

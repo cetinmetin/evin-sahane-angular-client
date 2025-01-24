@@ -11,4 +11,7 @@
 .nav-solid {
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
   font-weight: lighter !important;
+  position: fixed;
+  height: 60px;
+  margin-bottom: 60px;
 }

@@ -30,6 +30,7 @@ import { ScrollDirective } from '../../../directives/scroll.directive';
 	templateUrl: './testimonial-page.component.html',
 	standalone: true,
 	imports: [FeedbackBlockComponent, AsyncPipe, ScrollDirective],
+  styleUrls: ['./testimonial-page.css']
 })
 export class TestimonialPageComponent implements OnInit {
 	testimonials$: Observable<Testimonial[]>;

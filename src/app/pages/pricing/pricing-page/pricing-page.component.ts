@@ -12,6 +12,7 @@ import { ScrollDirective } from '../../../directives/scroll.directive';
 	templateUrl: './pricing-page.component.html',
 	standalone: true,
 	imports: [PricingBlockComponent, AsyncPipe, ScrollDirective],
+  styleUrls: ['./pricing-page.css']
 })
 export class PricingPageComponent implements OnInit {
 	pricing$: Observable<Pricing> = new Observable();

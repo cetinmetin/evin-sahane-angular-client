@@ -12,6 +12,7 @@ import { ScrollDirective } from '../../../directives/scroll.directive';
 	templateUrl: './clients-page.component.html',
 	standalone: true,
 	imports: [CompaniesBlockComponent, AsyncPipe, ScrollDirective],
+  styleUrls: ['./clients-page.css']
 })
 export class ClientsPageComponent implements OnInit {
 	clients$: Observable<Client[]> = new Observable();
