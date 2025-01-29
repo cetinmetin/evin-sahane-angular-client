@@ -28,9 +28,9 @@ const routes: Routes = [
 	{
 		path: 'testimonials',
 		loadComponent: () =>
-			import('./pages/testimonial/testimonial-page/testimonial-page.component').then(
-				mod => mod.TestimonialPageComponent
-			),
+			import(
+				'./pages/testimonial/testimonial-page/testimonial-page.component'
+			).then(mod => mod.TestimonialPageComponent),
 	},
 	{
 		path: 'gallery',
@@ -54,15 +54,19 @@ const routes: Routes = [
 			),
 	},
 	{
-    path: '**', loadComponent: () =>
-      import('./pages/notfound-page/notfound-page.component').then(
-        mod => mod.NotfoundPageComponent
-      ),
-  },
+		path: '**',
+		loadComponent: () =>
+			import('./pages/notfound-page/notfound-page.component').then(
+				mod => mod.NotfoundPageComponent
+			),
+	},
 ];
 
 @NgModule({
-	imports: [CommonModule, RouterModule.forRoot(routes)],
+	imports: [
+		CommonModule,
+		RouterModule.forRoot(routes, { enableViewTransitions: true }),
+	],
 	exports: [RouterModule],
 	declarations: [],
 })

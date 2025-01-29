@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Observable, throwError, catchError } from 'rxjs';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 import { Home } from '../../models/home.model';
 import { AsyncPipe, NgForOf } from '@angular/common';
@@ -18,7 +18,8 @@ export class HomePageComponent implements OnInit {
   @ViewChildren('itemRef', { read: ElementRef }) itemRefs: QueryList<ElementRef>;
   @ViewChild('homeContainer', { static: false }) container: ElementRef;
 
-	constructor(private config: ConfigService) {}
+	constructor(private config: ConfigService) {
+  }
 
 	ngOnInit() {
     this.homeContent$ = this.config.getPageData<Home>('pages', 7);
