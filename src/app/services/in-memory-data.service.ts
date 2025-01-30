@@ -63,8 +63,8 @@ export class InMemoryDataService implements InMemoryDbService {
 				id: 7,
 				name: 'header',
 				tagline: 'EVİN ŞAHANE',
-				title: 'Ömer ustamız gelmiş',
-				buttontext: 'Evinizi döşeyelim',
+				title: 'Restorasyon hizmetleri',
+				buttontext: 'Çalışmalarımız',
 				buttonlink: '/home',
 				images: [
 					'banner-image-1.jpg',
